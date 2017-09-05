@@ -1,11 +1,11 @@
 package onehome.test.mygank.module;
 
-import dagger.Component;
+import android.app.Application;
+
 import dagger.Module;
 import dagger.Provides;
-import onehome.test.mygank.base.BaseMvpActivity;
-import onehome.test.mygank.base.BaseMvpPresenter;
-import onehome.test.mygank.presenter.SplashPresenter;
+import onehome.test.mygank.data.api.CommonApi;
+import retrofit2.Retrofit;
 
 /**
  * Created by Administrator on 2017/9/4.
@@ -14,16 +14,8 @@ import onehome.test.mygank.presenter.SplashPresenter;
 
 @Module
 public class AppModule {
-    BaseMvpActivity baseMvpActivity;
-
-    public AppModule(BaseMvpActivity baseMvpActivity) {
-        this.baseMvpActivity = baseMvpActivity;
-    }
-
     @Provides
-    BaseMvpActivity providesSplashPresenter() {
-        return baseMvpActivity;
+    CommonApi ProvidesCommonApi(Retrofit retrofit) {
+        return retrofit.create(CommonApi.class);
     }
-
-    ;
 }
