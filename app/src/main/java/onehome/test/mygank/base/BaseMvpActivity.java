@@ -22,12 +22,11 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter> extends BaseAc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        hh();
-//        componentInject();
-//        presenter.onAttachView(this);
+        injectAppComponent();
+        presenter.onAttachView(this);
     }
 
-    protected void hh() {
+    protected void injectAppComponent() {
         AppComponent component = DaggerAppComponent.builder()
                 .appModule(new AppModule())
                 .clientModule(new ClientModule())
@@ -40,13 +39,8 @@ public abstract class BaseMvpActivity<P extends BaseMvpPresenter> extends BaseAc
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        if (presenter != null) {
-//            presenter.onDetachView();
-//        }
-    }
-
-    @Override
-    public View getActivityRootView() {
-        return this.findViewById(android.R.id.content);
+        if (presenter != null) {
+            presenter.onDetachView();
+        }
     }
 }

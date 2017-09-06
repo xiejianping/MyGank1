@@ -1,10 +1,8 @@
 package onehome.test.mygank.module;
 
-import android.app.Application;
-
 import dagger.Module;
 import dagger.Provides;
-import onehome.test.mygank.data.api.CommonApi;
+import onehome.test.mygank.api.CommonApi;
 import retrofit2.Retrofit;
 
 /**

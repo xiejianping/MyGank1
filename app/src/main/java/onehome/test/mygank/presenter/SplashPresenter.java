@@ -2,21 +2,19 @@ package onehome.test.mygank.presenter;
 
 import javax.inject.Inject;
 
-import onehome.test.mygank.activity.SplashActivity;
 import onehome.test.mygank.base.BaseMvpPresenter;
-import onehome.test.mygank.base.BaseView;
-import onehome.test.mygank.data.impl.SplashImpl;
-import onehome.test.mygank.data.impl.SplashView;
+import onehome.test.mygank.mode.impl.CommonImpl;
+import onehome.test.mygank.view.SplashView;
 
 /**
  * Created by Administrator on 2017/9/4.
  */
 
 public class SplashPresenter extends BaseMvpPresenter<SplashView> {
-    SplashImpl splashimpl;
+    CommonImpl splashimpl;
 
     @Inject
-    public SplashPresenter(SplashImpl splashimpl) {
+    public SplashPresenter(CommonImpl splashimpl) {
         this.splashimpl = splashimpl;
     }
 

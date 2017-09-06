@@ -1,4 +1,4 @@
-package onehome.test.mygank.data.impl;
+package onehome.test.mygank.mode.impl;
 
 import java.util.List;
 
@@ -6,22 +6,20 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import onehome.test.mygank.data.api.CommonApi;
-import onehome.test.mygank.data.entity.HttpBaseResult;
-import onehome.test.mygank.data.entity.WelfareBean;
+import onehome.test.mygank.api.CommonApi;
+import onehome.test.mygank.mode.entity.Website;
+import onehome.test.mygank.mode.entity.WelfareBean;
 
 /**
  * Created by Administrator on 2017/9/5.
  */
 
-public class SplashImpl {
+public class CommonImpl {
     CommonApi commonApi;
 
     @Inject
-    public SplashImpl(CommonApi commonApi) {
+    public CommonImpl(CommonApi commonApi) {
         this.commonApi = commonApi;
     }
 
@@ -29,5 +27,9 @@ public class SplashImpl {
         return commonApi.getSplash().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(e -> e.getResults());
+    }
+
+    public Observable<List<Website>> getRecent() {
+        return null;
     }
 }

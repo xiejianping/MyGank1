@@ -7,5 +7,4 @@ import android.view.View;
  */
 
 public interface BaseView {
-    View getActivityRootView();
 }

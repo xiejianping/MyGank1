@@ -1,4 +1,4 @@
-package onehome.test.mygank.data.entity;
+package onehome.test.mygank.mode.entity;
 
 /**
  * ****************************************************************
