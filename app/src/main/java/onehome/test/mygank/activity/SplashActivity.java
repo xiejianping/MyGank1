@@ -23,7 +23,7 @@ import onehome.test.mygank.component.AppComponent;
 
 import onehome.test.mygank.global.Constant;
 import onehome.test.mygank.mode.entity.WelfareBean;
-import onehome.test.mygank.view.SplashView;
+import onehome.test.mygank.view.InitView;
 import onehome.test.mygank.presenter.SplashPresenter;
 
 
@@ -31,7 +31,7 @@ import onehome.test.mygank.presenter.SplashPresenter;
  * Created by Administrator on 2017/9/4.
  */
 
-public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements SplashView {
+public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements InitView<WelfareBean> {
 
     @BindView(R.id.tv_time)
     TextView time;
@@ -82,27 +82,8 @@ public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements 
     }
 
     @Override
-    public void getSplashSuccess(WelfareBean welfareBean) {
-//        File photoCacheDir = Glide.getPhotoCacheDir(this);
-//        Log.d("4444444", "getSplashSuccess: " + photoCacheDir.getAbsolutePath());
-//        if (photoCacheDir.exists()) {
-//            File[] files = photoCacheDir.listFiles(new FileFilter() {
-//                @Override
-//                public boolean accept(File pathname) {
-//                    Log.d("4444444", "getSplashSuccess: " + photoCacheDir.getName());
-//                    if (pathname.getName().endsWith(".jpg")) {
-//                        return true;
-//                    }
-//                    return false;
-//                }
-//            });
-//            if (files.length > 0) {
-//                Glide.with(this).load(welfareBean.getUrl()).asBitmap().placeholder(Drawable.createFromPath(files[0].getAbsolutePath())).into(bg);
-//                return;
-//            }
-//        }
+    public void initDataSuccess(WelfareBean welfareBean) {
         url = welfareBean.getUrl();
         Glide.with(this).load(url).asBitmap().into(bg);
-
     }
 }

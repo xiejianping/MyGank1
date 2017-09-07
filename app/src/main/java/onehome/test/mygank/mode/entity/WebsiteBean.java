@@ -4,7 +4,7 @@ package onehome.test.mygank.mode.entity;
  * Created by Administrator on 2017/9/6.
  */
 
-public class Website {
+public class WebsiteBean {
     String _id;
     String content;
     String created_at;
@@ -43,7 +43,7 @@ public class Website {
 
     @Override
     public String toString() {
-        return "Website{" +
+        return "WebsiteBean{" +
                 "_id='" + _id + '\'' +
                 ", content='" + content + '\'' +
                 ", created_at='" + created_at + '\'' +

@@ -4,7 +4,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import onehome.test.mygank.mode.entity.HttpBaseResult;
-import onehome.test.mygank.mode.entity.Website;
+import onehome.test.mygank.mode.entity.WebsiteBean;
 import onehome.test.mygank.mode.entity.WelfareBean;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -21,5 +21,5 @@ public interface CommonApi {
     Observable<HttpBaseResult<List<WelfareBean>>> getSplash();
 
     @GET("history/content/{count}/{page}")
-    Observable<HttpBaseResult<List<Website>>> getRecent(@Path("count") int count, @Path("page") int page);
+    Observable<HttpBaseResult<List<WebsiteBean>>> getRecent(@Path("count") int count, @Path("page") int page);
 }

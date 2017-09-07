@@ -26,6 +26,7 @@ import onehome.test.mygank.R;
 import onehome.test.mygank.base.BaseMvpActivity;
 import onehome.test.mygank.component.AppComponent;
 import onehome.test.mygank.component.DaggerActivityComponent;
+import onehome.test.mygank.fragment.RecentFragment;
 import onehome.test.mygank.global.Constant;
 import onehome.test.mygank.presenter.MainPresenter;
 
@@ -39,7 +40,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Navi
     NavigationView navigationView;
     @BindView(R.id.fl)
     FrameLayout frameLayout;
-    @BindView(R.id.iv_user_header_bg)
+
     ImageView ivHeaderBg;
     private boolean prepareExit = false;
     private String imgUrl;
@@ -77,7 +78,10 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Navi
         toggle.syncState();
         drawerLayout.addDrawerListener(toggle);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View headerView = navigationView.getHeaderView(0);
+        ivHeaderBg = ((ImageView) headerView.findViewById(R.id.iv_user_header_bg));
+        RecentFragment recentFragment = new RecentFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl, recentFragment).commitAllowingStateLoss();
     }
 
     @Override
