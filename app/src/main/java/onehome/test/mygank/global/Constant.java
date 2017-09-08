@@ -6,4 +6,5 @@ package onehome.test.mygank.global;
 
 public class Constant {
     public static final String MAIN_URL="mainUrl";
+    public static final String WV_URL="WebUrl";
 }

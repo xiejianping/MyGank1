@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -23,15 +24,15 @@ import onehome.test.mygank.component.AppComponent;
 
 import onehome.test.mygank.global.Constant;
 import onehome.test.mygank.mode.entity.WelfareBean;
+import onehome.test.mygank.presenter.WelfarePresenter;
 import onehome.test.mygank.view.InitView;
-import onehome.test.mygank.presenter.SplashPresenter;
 
 
 /**
  * Created by Administrator on 2017/9/4.
  */
 
-public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements InitView<WelfareBean> {
+public class SplashActivity extends BaseMvpActivity<WelfarePresenter> implements InitView<List<WelfareBean>> {
 
     @BindView(R.id.tv_time)
     TextView time;
@@ -53,7 +54,7 @@ public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements 
 
     @Override
     protected void initData() {
-        presenter.loadData();
+        presenter.loadData("福利", 1);
         Observable.interval(0, 1, TimeUnit.SECONDS)
                 .take(5)
                 .subscribeOn(Schedulers.io())
@@ -82,8 +83,13 @@ public class SplashActivity extends BaseMvpActivity<SplashPresenter> implements 
     }
 
     @Override
-    public void initDataSuccess(WelfareBean welfareBean) {
-        url = welfareBean.getUrl();
+    public void initDataSuccess(List<WelfareBean> welfareBean) {
+        url = welfareBean.get(0).getUrl();
         Glide.with(this).load(url).asBitmap().into(bg);
+    }
+
+    @Override
+    public void initDataDefeat(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 }

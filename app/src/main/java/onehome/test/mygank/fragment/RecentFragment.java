@@ -2,6 +2,7 @@ package onehome.test.mygank.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -50,5 +51,10 @@ public class RecentFragment extends BaseMvpFragment<RecentPresenter> implements 
     public void initDataSuccess(List<WebsiteBean> websiteBeen) {
         list = websiteBeen;
         rv.setAdapter(new RecentRecyclerAdapter(getContext(), list));
+    }
+
+    @Override
+    public void initDataDefeat(String errorMessage) {
+        Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
     }
 }

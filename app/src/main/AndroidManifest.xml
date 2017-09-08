@@ -24,6 +24,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.PhotoViewActivity" />
     </application>
 
 </manifest>

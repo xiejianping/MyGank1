@@ -9,4 +9,5 @@ import onehome.test.mygank.mode.entity.WelfareBean;
 
 public interface InitView<T> extends BaseView {
     void initDataSuccess(T t);
+    void initDataDefeat(String errorMessage);
 }

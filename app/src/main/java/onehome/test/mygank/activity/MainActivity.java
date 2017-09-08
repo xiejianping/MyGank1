@@ -24,9 +24,11 @@ import butterknife.BindView;
 import io.reactivex.Observable;
 import onehome.test.mygank.R;
 import onehome.test.mygank.base.BaseMvpActivity;
+import onehome.test.mygank.base.BaseMvpFragment;
 import onehome.test.mygank.component.AppComponent;
-import onehome.test.mygank.component.DaggerActivityComponent;
+import onehome.test.mygank.fragment.MainFragment;
 import onehome.test.mygank.fragment.RecentFragment;
+import onehome.test.mygank.fragment.WelfareFragment;
 import onehome.test.mygank.global.Constant;
 import onehome.test.mygank.presenter.MainPresenter;
 
@@ -44,6 +46,10 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Navi
     ImageView ivHeaderBg;
     private boolean prepareExit = false;
     private String imgUrl;
+    private MainFragment mainFragment;
+    private BaseMvpFragment currentFragment;
+    private RecentFragment recentFragment;
+    private WelfareFragment welfareFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +86,10 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Navi
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         ivHeaderBg = ((ImageView) headerView.findViewById(R.id.iv_user_header_bg));
-        RecentFragment recentFragment = new RecentFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fl, recentFragment).commitAllowingStateLoss();
+        recentFragment = new RecentFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.fl, recentFragment).commitAllowingStateLoss();
+        currentFragment = recentFragment;
+
     }
 
     @Override
@@ -118,13 +126,43 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements Navi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_recent_gank:
-                Toast.makeText(this, "最新干货", Toast.LENGTH_SHORT).show();
+                if (currentFragment == recentFragment) {
+                    break;
+                }
+                if (recentFragment == null) {
+                    recentFragment = new RecentFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fl, recentFragment).commitAllowingStateLoss();
+                } else {
+                    getSupportFragmentManager().beginTransaction().show(recentFragment).commitAllowingStateLoss();
+                }
+                getSupportFragmentManager().beginTransaction().hide(currentFragment).commitAllowingStateLoss();
+                currentFragment = recentFragment;
                 break;
             case R.id.menu_all_gank:
-                Toast.makeText(this, "分类阅读", Toast.LENGTH_SHORT).show();
+                if (currentFragment == mainFragment) {
+                    break;
+                }
+                if (mainFragment == null) {
+                    mainFragment = new MainFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fl, mainFragment).commitAllowingStateLoss();
+                } else {
+                    getSupportFragmentManager().beginTransaction().show(mainFragment).commitAllowingStateLoss();
+                }
+                getSupportFragmentManager().beginTransaction().hide(currentFragment).commitAllowingStateLoss();
+                currentFragment = mainFragment;
                 break;
             case R.id.menu_welfare:
-                Toast.makeText(this, "福利满满", Toast.LENGTH_SHORT).show();
+                if (currentFragment == welfareFragment) {
+                    break;
+                }
+                if (welfareFragment == null) {
+                    welfareFragment = new WelfareFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fl, welfareFragment).commitAllowingStateLoss();
+                } else {
+                    getSupportFragmentManager().beginTransaction().show(welfareFragment).commitAllowingStateLoss();
+                }
+                getSupportFragmentManager().beginTransaction().hide(currentFragment).commitAllowingStateLoss();
+                currentFragment = welfareFragment;
                 break;
             case R.id.menu_zhihu:
                 Toast.makeText(this, "知乎日报", Toast.LENGTH_SHORT).show();
